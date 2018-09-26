@@ -17,4 +17,11 @@ public interface IServiceBook {
      * @return
      */
     List<Book> list();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    int remove(String id);
 }

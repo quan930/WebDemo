@@ -17,4 +17,11 @@ public interface IDAOBook {
      * @return 返回pojo 集合 没有size=0
      */
     List<Book> list();
+
+    /**
+     * 根据id 删除表中内容
+     * @param id id
+     * @return 成功返回1 否则返回0
+     */
+    int deleteBookById(String id);
 }

@@ -56,4 +56,21 @@ public class DAOBookImpl implements IDAOBook {
         }
         return pojos;
     }
+
+    @Override
+    public int deleteBookById(String id) {
+        int m = 0;
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            con = DBUtil.createConnection();
+            preparedStatement = con.prepareStatement("delete from book where id = ?");
+            preparedStatement.setString(1,id);
+            m = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        DBUtil.close(con,preparedStatement,null);
+        return m;
+    }
 }

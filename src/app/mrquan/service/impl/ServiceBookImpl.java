@@ -16,4 +16,9 @@ public class ServiceBookImpl implements IServiceBook {
     public List<Book> list() {
         return DAOFactory.getIDAOBookInstance().list();
     }
+
+    @Override
+    public int remove(String id) {
+        return DAOFactory.getIDAOBookInstance().deleteBookById(id);
+    }
 }

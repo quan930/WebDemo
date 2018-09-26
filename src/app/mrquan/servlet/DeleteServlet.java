@@ -1,7 +1,6 @@
 package app.mrquan.servlet;
 
 import app.mrquan.factory.ServiceFactory;
-import app.mrquan.pojo.Book;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/add")
-public class AddServlet extends HttpServlet {
+@WebServlet("/delete")
+public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Book pojo = new Book();
-        pojo.setId(request.getParameter("id"));
-        pojo.setName(new String(request.getParameter("name").getBytes("iso-8859-1"), "utf-8"));
-        pojo.setPrice(Double.valueOf(request.getParameter("price")));
-        int m = ServiceFactory.getIServiceBookInstance().add(pojo);
+        String id = request.getParameter("number");
+        int m = ServiceFactory.getIServiceBookInstance().remove(id);
         response.setCharacterEncoding("UTF-8");
         response.setHeader("content-type","text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         if (m==0){
             //失败
-            out.print("<script language='javascript'>alert('失败');window.location.href='add.html';</script>");
+            out.print("<script language='javascript'>alert('失败');window.location.href='show.jsp';</script>");
         }else {
             //成功
             out.print("<script language='javascript'>alert('成功');window.location.href='show.jsp';</script>");
